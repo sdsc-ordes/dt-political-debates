@@ -2,21 +2,27 @@
 Digital Twin on Political Debates
 
 ``` mermaid
-graph TD
+graph TB
     ExternalUNDatabase[External UN Database] --> UNScrapper[ODTP UN Scrapper]
 
     subgraph ODTP
+    direction TB
         UNScrapper --> UNMediaDataloader[UN Media Dataloader]
 
         UNMediaDataloader --> ODTPPyannoteWhisper[ODTP Pyannote Whisper]
         ODTPPyannoteWhisper --> ODTPTranslation[ODTP Translation]
 
+        ODTPTranslation --> S3Dataloader[S3 Dataloader]
     end
-    ODTPTranslation --> UNS3[Political Debates S3]
-    ODTPTranslation --> UNMongoDB[Political Debates MongoDB]
+    S3Dataloader --> UNS3[Political Debates S3]
 
-    UNS3 --> Frontend[Political Debates Frontend]
-    UNMongoDB <--> Frontend[Political Debates Frontend]
-    UNMongoDB <--> UNSolr
-    UNSolr <--> Frontend
+    subgraph Webplatform
+    direction TB
+        UNS3 --> UNMongoDB
+
+        UNMongoDB <--> Backend["Backend (API and Tools)"]
+        UNMongoDB --> UNSolr[UN Solr]
+        UNSolr --> Backend["Backend (API and Tools)"]
+        Backend <--> Frontend[Political Debates GUI]
+    end
 ```
