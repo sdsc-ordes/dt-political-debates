@@ -37,7 +37,7 @@ graph TB
     - https://github.com/sdsc-ordes/odtp-pyannote-whisper
 - `odtp-trascription2pdf`. Component to generate pdfs from a transcription json file. **Still under heavy development**
     - https://github.com/sdsc-ordes/odtp-transcriptions2pdf
-- `odtp-faces-indetifier`. Component to identify faces from video frames.
+- `odtp-faces-indentifier`. Component to identify faces from video frames.
     - To be developed. 
 - `odtp-s3datauploader`. Component to upload data output to an S3 folder
     - To be developed. 
@@ -61,7 +61,7 @@ In order to fully run this pipeline is necesary to start by a valid metadata jso
 
 ``` json
 {
-    "$schema": "schemas/unogDigitalRecordingMetadataMinimalSchema.json",
+    "$schema": "https://raw.githubusercontent.com/sdsc-ordes/dt-political-debates/refs/heads/main/schemas/unogDigitalRecordingMetadataMinimalSchema.json",
     "version": "1.0",
     "metadata": {
       "title": "HRC_20220929T0000",
@@ -104,8 +104,13 @@ TBD
 ## Changelog
 
 - v1.0.0
-    - Basic functionality for basic purposes
+    - Basic project structure, schemas, and scripts. 
 
 ## Roadmap
 
--  [ ] 
+- [ ] odtp-trascription2pdf component
+- [ ] data-downloader component
+- [ ] datauploader component
+- [ ] faces indentifier component
+- [ ] docker-compose 
+- [ ] odtp compatibility
