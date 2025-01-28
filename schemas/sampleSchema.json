@@ -1,0 +1,88 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "time": { "type": "string", "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$" },
+          "url": { "type": "string", "format": "uri" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "summary": { "type": "string" },
+          "labels": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        },
+        "required": ["title", "date", "url"]
+      },
+      "media": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "type": "string", "enum": ["video", "audio"] },
+            "name": { "type": "string" },
+            "data": { "type": "string", "format": "uri" },
+            "tags": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "required": ["id", "type", "name", "data"]
+        }
+      },
+      "annotations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "type": {
+              "type": "string",
+              "enum": ["audio_transcription", "audio_translation"]
+            },
+            "originChannel": { "type": "string" },
+            "labels": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "transcript": { "type": "string" },
+                  "start_timestamp": {
+                    "type": "string",
+                    "pattern": "^\\d{2}:\\d{2}:\\d{2}$"
+                  },
+                  "end_timestamp": {
+                    "type": "string",
+                    "pattern": "^\\d{2}:\\d{2}:\\d{2}$"
+                  },
+                  "labels": {
+                    "type": "object",
+                    "additionalProperties": { "type": "string" }
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                },
+                "required": ["transcript", "start_timestamp", "end_timestamp"]
+              }
+            }
+          },
+          "required": ["id", "type", "originChannel", "items"]
+        }
+      }
+    },
+    "required": ["metadata", "channels"]
+}

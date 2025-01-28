@@ -1,0 +1,103 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "MeetingId": { "type": "string" },
+        "Suffix": { "type": "string" },
+        "DPRowNumber": { "type": "string" },
+        "MeetingRequestId": { "type": "string" },
+        "Title": { "type": "string" },
+        "RoomNumber": { "type": "string" },
+        "TimeFrom": { "type": "string", "format": "date-time" },
+        "TimeTo": { "type": "string", "format": "date-time" },
+        "RecordingStart": { "type": "string", "pattern": "^(\\d{2}:\\d{2})$" },
+        "UniqueNumber": { "type": "string" },
+        "ClientName": { "type": "string" },
+        "ClientCode": { "type": "string" },
+        "PrivPubl": { "type": "string" },
+        "Exists": { "type": "string" },
+        "session_info": {
+            "type": "object",
+            "properties": {
+                "sessionfile": { "type": "string" },
+                "recording": {
+                    "type": "object",
+                    "properties": {
+                        "recorded": { "type": "boolean" },
+                        "startdate": { "type": "string", "format": "date" },
+                        "stopdate": { "type": "string", "format": "date" },
+                        "starttime": { "type": "string", "pattern": "^(\\d{2}:\\d{2}:\\d{2})$" },
+                        "stoptime": { "type": "string", "pattern": "^(\\d{2}:\\d{2}:\\d{2})$" },
+                        "recordingtime": { "type": "string", "pattern": "^(\\d{2}:\\d{2}:\\d{2})$" },
+                        "archivefile": { "type": "string" }
+                    },
+                    "required": ["recorded", "startdate", "stopdate", "starttime", "stoptime", "recordingtime", "archivefile"]
+                },
+                "recording_url": { "type": "string", "format": "uri" },
+                "userfields": {
+                    "type": "object",
+                    "properties": {
+                        "clientname": { "type": "string" },
+                        "meetingNR": { "type": "string" },
+                        "privatepublic": { "type": "string" },
+                        "summaryrecords": { "type": "string" },
+                        "sessiontitle": { "type": "string" },
+                        "lastchunk": { "type": "string" }
+                    },
+                    "required": ["clientname", "meetingNR", "privatepublic", "summaryrecords", "sessiontitle", "lastchunk"]
+                },
+                "tracks": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": { "type": "string" },
+                            "mediafiles": {
+                                "type": "array",
+                                "items": { "type": "string" }
+                            }
+                        },
+                        "required": ["name", "mediafiles"]
+                    }
+                },
+                "markers": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": { "type": "string" },
+                            "id": { "type": "string" },
+                            "name": { "type": "string" },
+                            "info": { "type": "string" },
+                            "time": { "type": "string", "pattern": "^(\\d{2}:\\d{2}:\\d{2})$" },
+                            "timeoffset": { "type": "string", "pattern": "^(\\d{2}:\\d{2}:\\d{2})$" }
+                        },
+                        "required": ["type", "id", "name", "info", "time", "timeoffset"]
+                    }
+                },
+                "available_transcriptions": {
+                    "type": "object",
+                    "additionalProperties": { "type": "string" }
+                }
+            },
+            "required": ["sessionfile", "recording", "recording_url", "userfields", "tracks", "available_transcriptions"]
+        }
+    },
+    "required": [
+        "MeetingId",
+        "Suffix",
+        "DPRowNumber",
+        "MeetingRequestId",
+        "Title",
+        "RoomNumber",
+        "TimeFrom",
+        "TimeTo",
+        "RecordingStart",
+        "UniqueNumber",
+        "ClientName",
+        "ClientCode",
+        "PrivPubl",
+        "Exists",
+        "session_info"
+    ]
+}

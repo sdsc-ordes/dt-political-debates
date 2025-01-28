@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "$schema": { "type": "string", "format": "uri" },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+$" },
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "title": { "type": "string" },
+                "date": { "type": "string", "format": "date" },
+                "time": { "type": "string", "pattern": "^(\\d{2}:\\d{2})$" },
+                "url": { "type": "string", "format": "uri" },
+                "tags": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                },
+                "summary": { "type": "string" },
+                "labels": { "type": "object", "additionalProperties": { "type": "string" } }
+            },
+            "required": ["title", "date", "time", "url", "tags", "summary", "labels"]
+        },
+        "channels": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": { "type": "string" },
+                    "type": { "type": "string", "enum": ["video", "audio"] },
+                    "name": { "type": "string" },
+                    "data": { "type": "string" },
+                    "tags": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    }
+                },
+                "required": ["id", "type", "name", "data", "tags"]
+            }
+        },
+        "annotations": {
+            "type": "array",
+            "items": {}
+        }
+    },
+    "required": ["$schema", "version", "metadata", "channels", "annotations"]
+}

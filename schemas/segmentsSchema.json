@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "segments": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "start": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "end": {
+                        "type": "number",
+                        "minimum": 0
+                    },
+                    "text": {
+                        "type": "string"
+                    },
+                    "speaker": {
+                        "type": "string",
+                        "pattern": "^SPEAKER_\\d+$"
+                    },
+                    "language": {
+                        "type": "string"
+                    }
+                },
+                "required": ["start", "end", "text", "speaker", "language"],
+                "additionalProperties": false
+            }
+        }
+    },
+    "required": ["segments"],
+    "additionalProperties": false
+}
