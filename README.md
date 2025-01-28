@@ -93,6 +93,8 @@ In order to fully run this pipeline is necesary to start by a valid metadata jso
   }
 ```
 
+TBD
+
 ### Tutorial to run the pipeline in ODTP
 
 TBD
@@ -114,3 +116,4 @@ TBD
 - [ ] faces indentifier component
 - [ ] docker-compose 
 - [ ] odtp compatibility
+- [ ] documentation
