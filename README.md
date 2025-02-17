@@ -7,14 +7,9 @@ graph TB
 
     subgraph ODTP
     direction TB
-        UNScrapper --> UNMediaDataloader[UN Media Dataloader]
-
-        UNMediaDataloader --> ODTPPyannoteWhisper[ODTP Pyannote Whisper]
-        ODTPPyannoteWhisper --> ODTPTranslation[ODTP Translation]
-
-        ODTPTranslation --> S3Dataloader[S3 Dataloader]
+        UNScrapper --> ODTPPyannoteWhisper[Diarizarion & Transcription]
     end
-    S3Dataloader --> UNS3[Political Debates S3]
+    ODTPPyannoteWhisper --> UNS3[Political Debates S3]
 
     subgraph Webplatform
     direction TB
@@ -31,15 +26,9 @@ graph TB
 
 - `odtp-unog-digitalrecordings-scrapper`. Component to scrap and download metadata from the UNOG Digital Recordings platform. 
     - https://github.com/sdsc-ordes/odtp-unog-digitalrecordings-scrapper
-- `odtp-unog-digitalrecordings-downloader`. Component to download a recording from the UNOG Digital Recordinfs platform.
-    - To be developed. 
 - `odtp-pyannote-whisper`. Component to diarize and transcribe audios and videos
     - https://github.com/sdsc-ordes/odtp-pyannote-whisper
-- `odtp-trascription2pdf`. Component to generate pdfs from a transcription json file. **Still under heavy development**
-    - https://github.com/sdsc-ordes/odtp-transcriptions2pdf
 - `odtp-faces-indentifier`. Component to identify faces from video frames.
-    - To be developed. 
-- `odtp-s3datauploader`. Component to upload data output to an S3 folder
     - To be developed. 
 
 The following part of the projects are not odtp components.
