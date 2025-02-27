@@ -28,8 +28,6 @@ graph TB
     - https://github.com/sdsc-ordes/odtp-unog-digitalrecordings-scrapper
 - `odtp-pyannote-whisper`. Component to diarize and transcribe audios and videos
     - https://github.com/sdsc-ordes/odtp-pyannote-whisper
-- `odtp-faces-indentifier`. Component to identify faces from video frames.
-    - To be developed. 
 
 The following part of the projects are not odtp components.
 - `debates-dataloader`. Tool to upload files to the S3 bucket, MongoDB, and Solr.
@@ -44,9 +42,20 @@ The following part of the projects are not odtp components.
 
 ## How to run this pipeline?
 
-### How to create an initial json file?
+### Tutorial to run the pipeline in ODTP
 
-In order to fully run this pipeline is necesary to start by a valid metadata json file. You can obtain one by fetching the data from the scrapper or create a synthetic one manually. This is the example of a synthetic one you can use to generate yours. It should validate against `schemas/unogDigitalRecordingMetadataMinimalSchema.json`. 
+This pipeline can be executed in ODTP by executing `dt-political-debates.sh`
+
+1. Clone this repository
+2. Edit `dt-political-debates.sh` with the ODTP user email
+3. Edit the secrets and other parameters.
+4. Run the bash script: `sh dt-political-debates.sh`
+
+Alternatively, you can add the components to the GUI and manually run the execution. 
+
+### How to use this tool with a custom file?
+
+In order to run the `out-py annotate-whisper` module, it is necessary to start with a valid metadata JSON file. You can obtain one by fetching the data from the scrapper or create a synthetic one manually. This is the example of a synthetic one you can use to generate yours. It should validate against `schemas/unogDigitalRecordingMetadataMinimalSchema.json`. 
 
 ``` json
 {
@@ -82,22 +91,15 @@ In order to fully run this pipeline is necesary to start by a valid metadata jso
   }
 ```
 
-TBD
+This metadata should be placed in the `odtp-input` folder for the `odtp-pyannote-whisper` component. In case you are using the outcome of the scrapper you shouldn't manually create this initial metadata file. 
 
-### Tutorial to run the pipeline in ODTP
-
-TBD
-
-### How to run the pipeline with Docker Compose
-
-TBD
 
 ## Changelog
 
 - v1.0.0
     - Basic project structure, schemas, and scripts. 
 
-## Roadmap
+## Next steps
 
 - [ ] odtp-trascription2pdf component
 - [ ] data-downloader component
